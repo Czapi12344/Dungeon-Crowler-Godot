@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl8tt7jmxk6tm"]
+
+[ext_resource type="Texture2D" uid="uid://bhpwbp4mdf1ur" path="res://Assets/Weapons/forVillageSprites/shop_image.png" id="1_oeccs"]
+
+[node name="shop_default" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ZmienicJakBedzieNormalnyRysunek" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(572, 318)
+scale = Vector2(1.71475, 1.87148)
+texture = ExtResource("1_oeccs")
+
+[node name="Item 1" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(-193, -63)
+rotation = -1.0472
+
+[node name="Item 2" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(-97, -63)
+rotation = -1.0472
+
+[node name="Item 3" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(97, -63)
+rotation = -1.0472
+
+[node name="Item 4" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(193, -63)
+rotation = -1.0472
+
+[node name="Item 5" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(-193, 63)
+rotation = -1.0472
+
+[node name="Item 6" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(-97, 63)
+rotation = -1.0472
+
+[node name="Item 7" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(97, 63)
+rotation = -1.0472
+
+[node name="Item 8" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(193, 63)
+rotation = -1.0472
+
+[node name="Item Church 1" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(-145, 0)
+
+[node name="Item Church 2" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+
+[node name="Item Church 3" type="Marker2D" parent="CanvasLayer/ZmienicJakBedzieNormalnyRysunek"]
+position = Vector2(145, 0)

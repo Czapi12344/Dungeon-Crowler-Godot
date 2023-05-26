@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://mr1q2tulxpok"]
+
+[node name="HUD_main_layer" type="CanvasLayer"]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 208.0
+offset_bottom = 48.0

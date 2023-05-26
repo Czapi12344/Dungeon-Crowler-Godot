@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://1gjos1mqmi1i"]
+
+[ext_resource type="PackedScene" uid="uid://c1hs0ivu7olsf" path="res://Weapons/Weapon.tscn" id="1_aafp2"]
+[ext_resource type="Texture2D" uid="uid://cf56kl4p3q481" path="res://Assets/Weapons/Hammer_gay.png" id="2_8xlk2"]
+
+[node name="Weapon_Hammer" instance=ExtResource("1_aafp2")]
+
+[node name="Handle" parent="." index="0"]
+position = Vector2(1, -1)
+
+[node name="SpriteWeapon" parent="." index="1"]
+position = Vector2(6, -6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8xlk2")
+
+[node name="BulletPoint" parent="." index="2"]
+position = Vector2(8, -8)

@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4j08174lgotq"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_xg3bl"]
+[ext_resource type="Texture2D" uid="uid://bgaqtx57es0b5" path="res://Texture/Ludzik_SidesOnly.png" id="2_0f778"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ucljs"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_j2hi1"]
+resource_name = "idle"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_myqkt"]
+resource_name = "left_move_animation"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_0owft"]
+resource_name = "right_move_animation"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3isxg"]
+_data = {
+"idle": SubResource("Animation_j2hi1"),
+"left_move_animation": SubResource("Animation_myqkt"),
+"right_move_animation": SubResource("Animation_0owft")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o2i6r"]
+radius = 7.0
+height = 26.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
+position = Vector2(36, 25)
+collision_layer = 513
+script = ExtResource("1_xg3bl")
+
+[node name="WeaponMarker2d" type="Marker2D" parent="."]
+
+[node name="Ludzik_spirite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.5, 0.456)
+texture = ExtResource("2_0f778")
+hframes = 4
+vframes = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_ucljs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Ludzik_spirite")
+libraries = {
+"": SubResource("AnimationLibrary_3isxg")
+}
+
+[node name="TimerDash" type="Timer" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 5120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_o2i6r")
+debug_color = Color(0.976471, 0, 0.4, 0.419608)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgfreb215sck3"]
+
+[ext_resource type="Script" path="res://Scripts/Minimap.gd" id="1_r8dhi"]
+[ext_resource type="Script" path="res://Gui/gui.gd" id="1_s7jr1"]
+[ext_resource type="Texture2D" uid="uid://28pkgxq4b2rs" path="res://Texture/Stick.png" id="1_y41jn"]
+[ext_resource type="Texture2D" uid="uid://0ijnw1rfkbue" path="res://Assets/Icons/dash_icon.png" id="2_0v5fs"]
+[ext_resource type="Texture2D" uid="uid://cfw6v61bi1emw" path="res://Assets/store_room_node.png" id="2_ujdk4"]
+
+[node name="GUI" type="CanvasLayer"]
+process_priority = 1
+layer = 5
+script = ExtResource("1_s7jr1")
+
+[node name="Control" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchor_left = 0.181
+anchor_top = 0.314
+anchor_right = 0.181
+anchor_bottom = 0.314
+offset_left = -208.512
+offset_top = -203.472
+offset_right = 943.488
+offset_bottom = 444.528
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="weaponSlot" type="ReferenceRect" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 552.0
+offset_right = 96.0
+offset_bottom = 608.0
+border_color = Color(0, 0, 0, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="weaponIcon" type="TextureRect" parent="Control/weaponSlot"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 56.0
+texture = ExtResource("1_y41jn")
+
+[node name="skillSlot1" type="ReferenceRect" parent="Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 552.0
+offset_right = 192.0
+offset_bottom = 608.0
+border_color = Color(0, 0, 0, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="skillSlot2" type="ReferenceRect" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 552.0
+offset_right = 288.0
+offset_bottom = 608.0
+border_color = Color(0, 0, 0, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="skillIcon2" type="TextureRect" parent="Control/skillSlot2"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 56.0
+texture = ExtResource("2_0v5fs")
+
+[node name="hpLabel" type="RichTextLabel" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 33.0
+offset_top = 60.0
+offset_right = 64.0
+offset_bottom = 88.0
+text = "HP"
+
+[node name="currentHPText" type="RichTextLabel" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 301.0
+offset_top = 61.0
+offset_right = 397.0
+offset_bottom = 85.0
+text = "100/100"
+
+[node name="coinsIcon" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 117.0
+offset_right = 86.0
+offset_bottom = 172.0
+texture = ExtResource("2_ujdk4")
+
+[node name="coinsCount" type="RichTextLabel" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 102.0
+offset_top = 131.0
+offset_right = 142.0
+offset_bottom = 171.0
+text = "0"
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+top_level = true
+light_mask = 0
+visibility_layer = 1048575
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 292.0
+offset_bottom = 80.0
+value = 50.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="VBoxContainer"]
+script = ExtResource("1_r8dhi")
+
+[node name="MapNode" type="Node2D" parent="VBoxContainer/Node2D"]

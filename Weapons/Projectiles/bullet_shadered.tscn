@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://besof08r3tt4q"]
+
+[ext_resource type="PackedScene" uid="uid://dyhxkeccnnrmi" path="res://Weapons/Projectiles/Bullet.tscn" id="1_tsuda"]
+[ext_resource type="Material" uid="uid://comnubjj4hulj" path="res://Assets/Shaders/bullet_particle_complete_shader.tres" id="2_a6ruq"]
+[ext_resource type="Texture2D" uid="uid://c84jgplm5ieb2" path="res://Assets/Shaders/bullet_particle_texture.tres" id="3_uumj2"]
+[ext_resource type="AudioStream" uid="uid://lc5plo0vd4xn" path="res://Sounds/bowshot5.wav" id="4_ni0q8"]
+
+[sub_resource type="Gradient" id="Gradient_p4auc"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_yr7ng"]
+offsets = PackedFloat32Array(0, 0.528662, 0.611465, 0.687898)
+colors = PackedColorArray(1, 1, 1, 0.490196, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wmqfh"]
+gradient = SubResource("Gradient_yr7ng")
+fill = 1
+fill_from = Vector2(0.524272, 0.509709)
+fill_to = Vector2(0.622727, 0.281818)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdyqq"]
+
+[node name="bullet" instance=ExtResource("1_tsuda")]
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="." index="1"]
+material = ExtResource("2_a6ruq")
+amount = 5
+speed_scale = 2.0
+fixed_fps = 30
+draw_order = 1
+texture = ExtResource("3_uumj2")
+gravity = Vector2(0, 25)
+orbit_velocity_min = 40.0
+orbit_velocity_max = 60.0
+color_ramp = SubResource("Gradient_p4auc")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(-2, -1.00001)
+texture = SubResource("GradientTexture2D_wmqfh")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CircleShape2D_wdyqq")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+rotation = 1.5708
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("4_ni0q8")
+autoplay = true

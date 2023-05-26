@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://n7mixmchp22j"]
+
+[ext_resource type="PackedScene" uid="uid://dyhxkeccnnrmi" path="res://Weapons/Projectiles/Bullet.tscn" id="1_6sr4o"]
+[ext_resource type="Texture2D" uid="uid://ddx0yvxhokyan" path="res://Assets/Projectiles/Fiereball2.png" id="2_cemm7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u30oa"]
+atlas = ExtResource("2_cemm7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt8ar"]
+atlas = ExtResource("2_cemm7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr56l"]
+atlas = ExtResource("2_cemm7")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0lh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u30oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt8ar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr56l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bxyh"]
+radius = 5.19139
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2rvbj"]
+radius = 9.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyfvd"]
+
+[node name="bullet" instance=ExtResource("1_6sr4o")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_j0lh1")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(17.0006, 6.19888e-05)
+scale = Vector2(1.34839, 1.34927)
+shape = SubResource("CircleShape2D_0bxyh")
+
+[node name="bullet_detected" parent="Disapere" index="0"]
+position = Vector2(14, 5.05447e-05)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2rvbj")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(11, 3.98199e-05)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_eyfvd")
+debug_color = Color(0.952941, 0.141176, 0.411765, 0.419608)

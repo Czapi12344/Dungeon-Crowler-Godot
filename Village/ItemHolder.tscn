@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://kd6ovq7thxll"]
+
+[ext_resource type="Script" path="res://Village/ItemHolder.gd" id="1_nwtrp"]
+[ext_resource type="Texture2D" uid="uid://bwsurs5y0ulm" path="res://Assets/Weapons/forVillageSprites/item_holder.png" id="2_val0g"]
+[ext_resource type="Texture2D" uid="uid://cu0b4hcavewsw" path="res://Village/AXE.png" id="3_5sapa"]
+[ext_resource type="FontFile" uid="uid://conie7n4arjxj" path="res://font/PixelFJVerdana12pt.ttf" id="4_7m6xf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ew7m"]
+size = Vector2(462.875, 463.875)
+
+[node name="ItemHolder" type="Node2D"]
+script = ExtResource("1_nwtrp")
+
+[node name="ToTezZmienicJakTylkoBedzieNormalnyRysunek" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-7, 3.00001)
+scale = Vector2(5.45313, 5.30735)
+texture = ExtResource("2_val0g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+texture_filter = 1
+position = Vector2(-6.4375, 18.0625)
+shape = SubResource("RectangleShape2D_5ew7m")
+
+[node name="Item" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.24707, -5.84864)
+scale = Vector2(11.4998, 8.07428)
+texture = ExtResource("3_5sapa")
+
+[node name="Bought" type="TextEdit" parent="."]
+offset_left = -152.0
+offset_top = 145.0
+offset_right = 141.0
+offset_bottom = 221.0
+theme_override_fonts/font = ExtResource("4_7m6xf")
+text = "200 monet"
+
+[node name="Cost" type="TextEdit" parent="."]
+offset_left = -47.0
+offset_top = -219.0
+offset_right = 30.0
+offset_bottom = -124.0
+theme_override_fonts/font = ExtResource("4_7m6xf")
+theme_override_font_sizes/font_size = 35
+text = "0"
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

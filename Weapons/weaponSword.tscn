@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8kuyxgda82s0"]
+
+[ext_resource type="PackedScene" uid="uid://c1hs0ivu7olsf" path="res://Weapons/Weapon.tscn" id="1_it4d6"]
+[ext_resource type="Texture2D" uid="uid://cd8x5qo65414h" path="res://Assets/Weapons/sword_1.png" id="2_tjxk7"]
+
+[node name="Weapon_Hammer" instance=ExtResource("1_it4d6")]
+
+[node name="Handle" parent="." index="0"]
+position = Vector2(5.95031, -5.63498)
+
+[node name="SpriteWeapon" parent="." index="1"]
+position = Vector2(12.7883, -12.5781)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_tjxk7")
+
+[node name="BulletPoint" parent="." index="2"]
+position = Vector2(16.7977, -16.5696)

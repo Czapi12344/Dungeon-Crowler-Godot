@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2xrnmawlgo5h"]
+
+[ext_resource type="Script" path="res://Scripts/Minimap.gd" id="1_257iu"]
+
+[node name="GUI2" type="CanvasLayer"]
+process_priority = 1
+layer = 5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node2D" type="Node2D" parent="Control/BoxContainer"]
+script = ExtResource("1_257iu")
+
+[node name="Camera2D" type="Camera2D" parent="Control/BoxContainer/Node2D"]
+zoom = Vector2(3, 3)
+
+[node name="MapNode" type="Node2D" parent="Control/BoxContainer/Node2D"]
+position = Vector2(12, 35)
+
+[node name="Button" type="Button" parent="Control/BoxContainer/Node2D"]
+offset_left = 80.0
+offset_top = -83.0
+offset_right = 160.0
+offset_bottom = -52.0
+text = "Generate"

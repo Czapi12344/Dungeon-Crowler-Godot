@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpp30udjyk188"]
+
+[ext_resource type="PackedScene" uid="uid://dgfreb215sck3" path="res://Gui/gui.tscn" id="1_82j71"]
+[ext_resource type="PackedScene" uid="uid://rlvatekt1r6i" path="res://Scripts/room.tscn" id="2_45bw4"]
+
+[node name="World" type="Node2D"]
+
+[node name="GUI" parent="." instance=ExtResource("1_82j71")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Room" parent="." instance=ExtResource("2_45bw4")]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://l2ckslmfndq6"]
+
+[ext_resource type="PackedScene" uid="uid://dyhxkeccnnrmi" path="res://Weapons/Projectiles/Bullet.tscn" id="1_sa87j"]
+[ext_resource type="Texture2D" uid="uid://b2fa8f5rsfo4i" path="res://Assets/Projectiles/Uogient.png" id="2_21uq6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuqsq"]
+atlas = ExtResource("2_21uq6")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c84tr"]
+atlas = ExtResource("2_21uq6")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybqgs"]
+atlas = ExtResource("2_21uq6")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfihr"]
+atlas = ExtResource("2_21uq6")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3k5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuqsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c84tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybqgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfihr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmsgx"]
+height = 40.5687
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4v8h1"]
+radius = 5.94636
+height = 18.6886
+
+[node name="bullet" instance=ExtResource("1_sa87j")]
+scale = Vector2(1, 1.17719)
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_r3k5v")
+autoplay = "default"
+frame_progress = 0.973286
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(0.507919, 0.364562)
+shape = SubResource("CapsuleShape2D_lmsgx")
+
+[node name="bullet_detected" parent="Disapere" index="0"]
+position = Vector2(-0.849481, -3.61341e-06)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_4v8h1")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-0.779355, -4.61936e-06)
+rotation = 1.5708

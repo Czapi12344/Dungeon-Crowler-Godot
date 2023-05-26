@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://rxuqpbim2pkc"]
+
+[ext_resource type="Script" path="res://Village/village_map.gd" id="1_f3d8j"]
+[ext_resource type="Texture2D" uid="uid://tsyca466bimt" path="res://Village/Village.png" id="2_h7fbs"]
+[ext_resource type="Script" path="res://Village/Shop_blacksmith.gd" id="3_hcoky"]
+[ext_resource type="Script" path="res://Shop_church.gd" id="4_5247w"]
+[ext_resource type="Script" path="res://Shop_variety.gd" id="5_texah"]
+[ext_resource type="AudioStream" uid="uid://jlcl1oo2bm81" path="res://Sounds/village_sound.wav" id="6_uq0q6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hrcv"]
+radius = 40.1123
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_f3d8j")
+
+[node name="TileMap" type="Sprite2D" parent="."]
+texture = ExtResource("2_h7fbs")
+
+[node name="TeleportFromVillage" type="Marker2D" parent="TileMap"]
+position = Vector2(5, 245)
+
+[node name="Spawn" type="Marker2D" parent="TileMap"]
+position = Vector2(-15, 10)
+
+[node name="Shop_blacksmith" type="Area2D" parent="TileMap"]
+position = Vector2(177, 68)
+script = ExtResource("3_hcoky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Shop_blacksmith"]
+position = Vector2(1, -3)
+shape = SubResource("CircleShape2D_2hrcv")
+
+[node name="Shop_variety" type="Area2D" parent="TileMap"]
+position = Vector2(290, -394)
+script = ExtResource("5_texah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Shop_variety"]
+position = Vector2(-203, 314)
+shape = SubResource("CircleShape2D_2hrcv")
+
+[node name="Shop_church" type="Area2D" parent="TileMap"]
+position = Vector2(290, -394)
+script = ExtResource("4_5247w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Shop_church"]
+position = Vector2(-442, 487)
+shape = SubResource("CircleShape2D_2hrcv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_uq0q6")
+autoplay = true
+
+[connection signal="area_entered" from="TileMap/Shop_blacksmith" to="TileMap/Shop_blacksmith" method="_on_area_entered"]
+[connection signal="body_entered" from="TileMap/Shop_blacksmith" to="TileMap/Shop_blacksmith" method="_on_body_entered"]
+[connection signal="body_exited" from="TileMap/Shop_blacksmith" to="TileMap/Shop_blacksmith" method="_on_body_exited"]
+[connection signal="area_entered" from="TileMap/Shop_variety" to="TileMap/Shop_variety" method="_on_area_entered"]
+[connection signal="body_entered" from="TileMap/Shop_variety" to="TileMap/Shop_variety" method="_on_body_entered"]
+[connection signal="body_exited" from="TileMap/Shop_variety" to="TileMap/Shop_variety" method="_on_body_exited"]
+[connection signal="area_entered" from="TileMap/Shop_church" to="TileMap/Shop_church" method="_on_area_entered"]
+[connection signal="body_entered" from="TileMap/Shop_church" to="TileMap/Shop_church" method="_on_body_entered"]
+[connection signal="body_exited" from="TileMap/Shop_church" to="TileMap/Shop_church" method="_on_body_exited"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bds55ngmtpkq3"]
+
+[ext_resource type="Script" path="res://Rooms/portal_change_floor.gd" id="1_v6fdk"]
+[ext_resource type="Texture2D" uid="uid://dk842wxs67gcu" path="res://Portals/portal_up.png" id="2_lu48s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el53x"]
+radius = 3.2
+
+[sub_resource type="Animation" id="Animation_ah63m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalUp:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_i5mqb"]
+resource_name = "portal_down_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalUp:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmt1u"]
+_data = {
+"RESET": SubResource("Animation_ah63m"),
+"portal_down_anim": SubResource("Animation_i5mqb")
+}
+
+[node name="Portal" type="Area2D"]
+script = ExtResource("1_v6fdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_el53x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mmt1u")
+}
+
+[node name="PortalUp" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_lu48s")
+hframes = 11
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

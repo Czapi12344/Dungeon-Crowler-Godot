@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://buljmcv30yiy3"]
+
+[ext_resource type="PackedScene" uid="uid://dyhxkeccnnrmi" path="res://Weapons/Projectiles/Bullet.tscn" id="1_60a0j"]
+[ext_resource type="Texture2D" uid="uid://iho6h3ogx8w2" path="res://Assets/Projectiles/wand_spark_sheet_2t.png" id="2_i4xk4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gsj8"]
+atlas = ExtResource("2_i4xk4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hngc"]
+atlas = ExtResource("2_i4xk4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm1i6"]
+atlas = ExtResource("2_i4xk4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umaj7"]
+atlas = ExtResource("2_i4xk4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go43y"]
+atlas = ExtResource("2_i4xk4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66g1q"]
+atlas = ExtResource("2_i4xk4")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjo32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gsj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hngc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm1i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umaj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go43y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66g1q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffius"]
+radius = 16.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opce0"]
+radius = 17.2627
+
+[node name="bullet" instance=ExtResource("1_60a0j")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_fjo32")
+autoplay = "default"
+frame_progress = 0.0721942
+speed_scale = 2.5
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_ffius")
+
+[node name="bullet_detected" parent="Disapere" index="0"]
+shape = SubResource("CircleShape2D_opce0")

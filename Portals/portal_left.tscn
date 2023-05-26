@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxuyj85552gfp"]
+
+[ext_resource type="Script" path="res://Scripts/portal.gd" id="1_q6xcp"]
+[ext_resource type="Texture2D" uid="uid://bciu7mw6r55da" path="res://Portals/portal_left.png" id="2_kldai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el53x"]
+radius = 3.2
+
+[sub_resource type="Animation" id="Animation_tcgxp"]
+resource_name = "portal_down_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_hvqyo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8tfxs"]
+_data = {
+"RESET": SubResource("Animation_hvqyo"),
+"portal_down_anim": SubResource("Animation_tcgxp")
+}
+
+[node name="Portal" type="Area2D"]
+script = ExtResource("1_q6xcp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_el53x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8tfxs")
+}
+
+[node name="PortalLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_kldai")
+hframes = 11
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

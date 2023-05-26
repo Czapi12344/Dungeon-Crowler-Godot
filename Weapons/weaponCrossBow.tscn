@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cov3aecw5qtiq"]
+
+[ext_resource type="PackedScene" uid="uid://c1hs0ivu7olsf" path="res://Weapons/Weapon.tscn" id="1_e1bl7"]
+[ext_resource type="Texture2D" uid="uid://btrxcliu4ij6x" path="res://Assets/crossbow_1.png" id="2_80jsa"]
+
+[node name="Weapon_Hammer" instance=ExtResource("1_e1bl7")]
+
+[node name="Handle" parent="." index="0"]
+position = Vector2(4, -4)
+
+[node name="SpriteWeapon" parent="." index="1"]
+position = Vector2(8, -8)
+texture = ExtResource("2_80jsa")
+
+[node name="BulletPoint" parent="." index="2"]
+position = Vector2(16, -16)

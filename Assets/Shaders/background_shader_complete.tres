@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cir826q306ahi"]
+
+[ext_resource type="Shader" path="res://Assets/background_shader.gdshader" id="1_sclnp"]
+[ext_resource type="Texture2D" uid="uid://kyew6fimcohj" path="res://Assets/Noises/background_noise_2.tres" id="2_12d4r"]
+
+[resource]
+shader = ExtResource("1_sclnp")
+shader_parameter/scroll1 = Vector2(0.1, 0.1)
+shader_parameter/scroll2 = Vector2(0.2, 0.2)
+shader_parameter/textureNoise = ExtResource("2_12d4r")

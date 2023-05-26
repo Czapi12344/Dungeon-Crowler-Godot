@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://r7m816fvjvk3"]
+
+[ext_resource type="PackedScene" uid="uid://dyhxkeccnnrmi" path="res://Weapons/Projectiles/Bullet.tscn" id="1_ela18"]
+[ext_resource type="Texture2D" uid="uid://ctu5c4840wk1j" path="res://Assets/Projectiles/Fiereball.png" id="2_c70wf"]
+[ext_resource type="AudioStream" uid="uid://b7f1h5bxkynp7" path="res://Sounds/sword3.wav" id="3_l7tn0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ta0e"]
+atlas = ExtResource("2_c70wf")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcrr0"]
+atlas = ExtResource("2_c70wf")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye2xm"]
+atlas = ExtResource("2_c70wf")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf6a7"]
+atlas = ExtResource("2_c70wf")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwgkh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ta0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcrr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye2xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf6a7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh2ss"]
+radius = 7.07107
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_65owb"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_apjvy"]
+radius = 8.0
+height = 26.0
+
+[node name="bullet" instance=ExtResource("1_ela18")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+rotation = 0.00927255
+sprite_frames = SubResource("SpriteFrames_qwgkh")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(3, 1.33514e-05)
+shape = SubResource("CircleShape2D_jh2ss")
+
+[node name="bullet_detected" parent="Disapere" index="0"]
+position = Vector2(-2, -7.27177e-06)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_65owb")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-2, -7.23998e-06)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_apjvy")
+one_way_collision_margin = 0.0
+debug_color = Color(0.980392, 0, 0.364706, 0.419608)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("3_l7tn0")
+autoplay = true

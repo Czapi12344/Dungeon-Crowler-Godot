@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://comnubjj4hulj"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/bullet_particles_shader.gdshader" id="1_ryjnq"]
+
+[sub_resource type="Gradient" id="Gradient_f7t5m"]
+offsets = PackedFloat32Array(0.138211, 0.300813, 0.439024, 0.666667, 1)
+colors = PackedColorArray(0.133333, 0.301961, 0.6, 1, 0.0627451, 0.364706, 1, 1, 0.172549, 0.490196, 0.196078, 0.858824, 0.243137, 0.835294, 0.47451, 1, 0.858824, 0.658824, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jmqvl"]
+gradient = SubResource("Gradient_f7t5m")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mv1vi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vha2m"]
+
+[sub_resource type="Gradient" id="Gradient_8p1h7"]
+offsets = PackedFloat32Array(0, 0.544715, 1)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.745098, 0.337255, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f5n4l"]
+gradient = SubResource("Gradient_8p1h7")
+
+[resource]
+shader = ExtResource("1_ryjnq")
+shader_parameter/scroll1 = Vector2(0.2, -0.3)
+shader_parameter/scroll2 = Vector2(0.1, -0.4)
+shader_parameter/noise2_scale = 0.5
+shader_parameter/sharpness = 6.0
+shader_parameter/lifeTimeColorGradient = SubResource("GradientTexture2D_jmqvl")
+shader_parameter/overlapGradient = SubResource("GradientTexture2D_f5n4l")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_mv1vi")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_vha2m")

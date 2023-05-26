@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8wd23a20bjrb"]
+
+[ext_resource type="PackedScene" uid="uid://dyhxkeccnnrmi" path="res://Weapons/Projectiles/Bullet.tscn" id="1_yvdij"]
+[ext_resource type="Texture2D" uid="uid://cjykjixmk3dlt" path="res://Assets/Projectiles/arrow.png" id="2_x6glt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl2en"]
+atlas = ExtResource("2_x6glt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pgcp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl2en")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77ymb"]
+radius = 1.00001
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15o0d"]
+radius = 2.0
+height = 14.0
+
+[node name="bullet" instance=ExtResource("1_yvdij")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(0.0160326, 0.0814643)
+rotation = 2.2986
+scale = Vector2(0.302263, 0.330823)
+sprite_frames = SubResource("SpriteFrames_4pgcp")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_77ymb")
+
+[node name="bullet_detected" parent="Disapere" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_15o0d")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+rotation = 1.5708

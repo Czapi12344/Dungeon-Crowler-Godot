@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnl5fxfhbi3rg"]
+
+[ext_resource type="Script" path="res://item_to_buy_in_room_shop.gd" id="1_0fk20"]
+[ext_resource type="Texture2D" uid="uid://cy72vaw6dmi7u" path="res://Assets/Weapons/AXE_1.png" id="2_kxyha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bsjpg"]
+radius = 194.544
+
+[node name="ItemToBuyInRoomShop" type="Node2D"]
+script = ExtResource("1_0fk20")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+texture_filter = 1
+position = Vector2(-21.3594, 4.51563)
+shape = SubResource("CircleShape2D_bsjpg")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(-3, -27)
+scale = Vector2(11.8125, 10.3438)
+texture = ExtResource("2_kxyha")
+
+[node name="Cost" type="TextEdit" parent="."]
+offset_left = -115.0
+offset_top = 172.0
+offset_right = 75.0
+offset_bottom = 301.0
+theme_override_font_sizes/font_size = 75
+text = "300"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

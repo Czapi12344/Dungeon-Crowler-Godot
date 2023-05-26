@@ -1,0 +1,133 @@
+[gd_scene load_steps=18 format=3 uid="uid://blcmcggyepaq7"]
+
+[ext_resource type="Script" path="res://Enemies/Pchla.gd" id="1_epxli"]
+[ext_resource type="Texture2D" uid="uid://dsaodvhm7ejit" path="res://Assets/Characters/Keukegen.png" id="1_w0qa3"]
+[ext_resource type="Script" path="res://Enemies/HitBox.gd" id="3_74ikw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45nt7"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_280jc"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbtg8"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyo7e"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnrv4"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3b1d"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1t40"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5mqg"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k00fy"]
+atlas = ExtResource("1_w0qa3")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2dq4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45nt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_280jc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbtg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyo7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnrv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3b1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1t40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5mqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k00fy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oy8d6"]
+radius = 9.05539
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0b5j"]
+radius = 175.103
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aocu3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tirym"]
+radius = 9.0
+
+[node name="Pchla" type="CharacterBody2D"]
+collision_layer = 2049
+collision_mask = 1537
+up_direction = Vector2(0, 1)
+script = ExtResource("1_epxli")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j2dq4")
+frame_progress = 0.723364
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
+shape = SubResource("CircleShape2D_oy8d6")
+
+[node name="detection_range" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_range"]
+shape = SubResource("CircleShape2D_a0b5j")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 2048
+monitorable = false
+
+[node name="hurtBoxCollision" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, 3)
+shape = SubResource("CircleShape2D_aocu3")
+debug_color = Color(0.992157, 0, 0, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 512
+monitoring = false
+script = ExtResource("3_74ikw")
+
+[node name="hitBoxCollision" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, 3)
+shape = SubResource("CircleShape2D_tirym")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[connection signal="body_entered" from="detection_range" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="detection_range" to="." method="_on_detection_range_body_exited"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
